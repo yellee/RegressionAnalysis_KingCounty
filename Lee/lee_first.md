@@ -18,15 +18,16 @@ for( i in 1:4 ){
 
 ###################################################################################
 
-# install.packages("norm.test")
-# library(norm.test) => transformation을 해야한다.(선형으로 _ 그래야 더 편하고...)
+# shapiro.test(variables)
+# skewed 되어서 => transformation을 해야할수도....
 
 
 # basement랑 yr_renovated가 0이 아닌 값들을 모아서 히스토그램
 par(mfrow=c(2,1))
 
 ###################################################################################
-
+# basement와 renovated가 0이 너무 많아서 값이 있는 것과 분류
+# (1)
 install.packages("dplyr")
 library(dplyr)
 
@@ -38,12 +39,16 @@ is_yrrenovated <- dplyr::select(portion, yr_renovated) %>%
                   dplyr::filter(yr_renovated!=0)
 hist(table(is_yrrenovated))
 
+# (2)
+ap <- portion[sqft_basement!=0,]
+bp <- portion[yr_renovated!=0,]
+
 ###################################################################################
 
 # scatterplot matrix
 scatterplot_matrix <- pairs(portion)
 
-## 보면 sqft_above와 sqft_basement와 price는 어느 정도의 선형관계를 보인다. (Y와 X간)
+## 보면 sqft_above, sqft_basement와 price는 어느 정도의 선형관계를 보인다. (Y와 X간)
 ## sqft_above와 sqft_basement도 어느 정도의 선형관계를 보인다. 
 
 # correlation matrix
@@ -60,10 +65,8 @@ cor.test(portion$sqft_above, portion$price, method="pearson") # 유의하다(sig
 
 
 # is_basement ~ price
-https://github.com/targeteer/RegressionAnalysis_KingCounty/commit/5dbfbb47d0932312ec476c952087c27873977960#diff-8fab3d0caea37aee765dc2147d2f2d6a
+cor.test(dp$sqft_basement,dp$price, method = "pearson")
 
-
- cor.test(dp$sqft_basement,dp$price, method = "pearson")
 
 	Pearson's product-moment correlation
 
