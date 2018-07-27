@@ -40,8 +40,8 @@ is_yrrenovated <- dplyr::select(portion, yr_renovated) %>%
 hist(table(is_yrrenovated))
 
 # (2)
-ap <- portion[sqft_basement!=0,]
-bp <- portion[yr_renovated!=0,]
+ap <- portion[portion$sqft_basement!=0,]
+bp <- portion[portion$yr_renovated!=0,]
 
 ###################################################################################
 
