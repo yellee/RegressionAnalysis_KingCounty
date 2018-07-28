@@ -101,4 +101,8 @@ ggplot(data=ap, aes(x=yr_renovated, y=price)) +
 # MSE와 관련된 척도 AIC가 빠짐으로써 유의미하게 줄지 않았다.
 # 이는 sqft_basement가 그리 중요한 변수는 아님을 말하는 것 같다.
 
+# sqft_basement는 빼고 / yr_renovated는 양적,연속형 변수로 보는 것이 나을 것 같습니다.
+# 로그 변환과 같은 변환은, 다중 회귀분석에서 복잡해서 많이 안 쓰인다고 해서
+# 그것은 그냥 놔두고, 말씀하신 것처럼 독립변수들을 scale함수를 써서
+# 표준화하면 어떨까 생각합니다.
 
